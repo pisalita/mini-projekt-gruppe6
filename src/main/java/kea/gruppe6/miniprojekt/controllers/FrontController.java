@@ -43,4 +43,10 @@ public class FrontController {
         return "welcome.html";
     }
 
+    @GetMapping(value ="/createWishList")
+    public String createWishList(WebRequest request){
+
+        request.getAttribute("username", WebRequest.SCOPE_SESSION);
+        return "wishlist.html";
+    }
 }
