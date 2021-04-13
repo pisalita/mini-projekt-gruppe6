@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <fragment src=""></fragment>
+    <meta charset="UTF-8">
+    <title>Wishlink - Wishlist</title>
+</head>
+<body>
+    <header><fragment src=""></fragment></header>
+
+
+<form action="" method="post">
+    <button>Login</button>
+    <p><span th:text="${session.username}"></span>'s Wish-list</p>
+    <label for="wish-item">Wish item: </label>
+    <input type="text" id="wish-item" name="wish-item">
+    <label for="comment">Comment: </label>
+    <input type="textarea" id="comment" name="comment">
+    <label for="wish-link">Wish link: </label>
+    <input type="text" id="wish-link" name="wish-link">
+    <button>Add Wish</button>
+    <ul>
+        <li>HER SKAL ØNSKERNE TILFØJES NÅR MAN TRYKKER PÅ ADD WISH SOMEHOW MED THYMELEAF</li>
+    </ul>
+    <input type="submit" value="Share Wishlist">
+</form>
+
+</body>
+</html>
