@@ -20,6 +20,7 @@ import java.sql.Statement;
 @Controller
 public class FrontController {
     LoginControl loginControl = new LoginControl(new UserImpl());
+    User user;
 
     @GetMapping(value ="/login")
     public String login(){
@@ -31,20 +32,21 @@ public class FrontController {
         String email = request.getParameter("email");
         String pwd =  request.getParameter("pwd");
 
-        User user =  loginControl.login(email,pwd);
+        user =  loginControl.login(email,pwd);
 
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("username", user.getUsername(), WebRequest.SCOPE_SESSION);
 
-        System.out.println(user);
+        System.out.println(user.getUsername() + user.getEmail() + user.getPwd());
 
         return "redirect:/welcome";
     }
 
     @GetMapping(value ="/welcome")
-    @ResponseBody
-    public String welcome(){
-        return "Welcome!";
+    public String welcome(WebRequest request){
+
+        request.getAttribute("username", WebRequest.SCOPE_SESSION);
+        return "welcome.html";
     }
 
 }
