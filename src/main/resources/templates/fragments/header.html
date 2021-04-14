@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header>
+    <nav>
+        <a th:href="@{/}"><img class="logo" th:src="@{/images/logo.png}"/></a>
+        <div class="nav-links">
+            <a th:href="@{/}"><li th:classappend="${currentPage=='home' ? 'bold':''}">Home</li></a>
+            <a th:href="@{/login}"><li th:classappend="${currentPage=='login' ? 'bold':''}">Login</li></a>
+            <a th:href="@{/create-user}"><li th:classappend="${currentPage=='create-user' ? 'bold':''}">Create User</li></a>
+        </div>
+    </nav>
+</header>
+</html>

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WishLink - Login</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html(pageTitle='WishLink - Login')">
 </head>
 <body>
-<header><fragment src=""></fragment></header>
+<header th:replace="fragments/header.html"></header>
 
 <h1>Enter your user credentials to log in</h1>
 <form action="/login-validation" method="post">
@@ -16,4 +14,6 @@
 </form>
 
 </body>
+
+<footer th:replace="fragments/footer.html"></footer>
 </html>

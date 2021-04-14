@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create user</title>
+<head th:replace="fragments/head.html(pageTitle='WishLink - Create User')">
 </head>
 <body>
+<header th:replace="fragments/header.html">
+
+</header>
 <form action="/create-user" method="POST">
 <input type="text" name="Name" id="Name" placeholder="Enter your full name">
 <input type="email" name="email" id="email" placeholder="Enter your E-mail address">
@@ -13,4 +14,6 @@
 <button type="submit">Click here to create user</button>
 </form>
 </body>
+
+<footer th:replace="fragments/footer.html"></footer>
 </html>
