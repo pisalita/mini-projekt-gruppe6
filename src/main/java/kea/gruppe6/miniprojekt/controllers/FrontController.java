@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 
@@ -100,6 +101,15 @@ public class FrontController {
         request.setAttribute("wishlist", wishList.getList(), WebRequest.SCOPE_SESSION);
         wishMapper.createWish(wish);
         return "redirect:/createWishList";
+    }
+
+    @GetMapping("/view-wishlist")
+    public String viewWishlist(@RequestParam("email") String email, WebRequest request){
+
+        WishList readList = wishMapper.readWish(email);
+        request.setAttribute("wishlist", readList.getList(), WebRequest.SCOPE_SESSION);
+
+        return "view-wishlist.html";
     }
 
 }

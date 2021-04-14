@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul th:each="wishes: ${session.wishlist}">
+    <li th:text="${wishes.title}"></li>
+    <li th:text="${wishes.cmnt}"></li>
+    <li th:text="${wishes.link}"></li>
+    <li th:text="${wishes.reserved}"></li>
+</ul>
+
+</body>
+</html>
