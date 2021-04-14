@@ -6,19 +6,28 @@
     <header th:replace="fragments/header.html"></header>
 
 
-<form action="" method="post">
+<form action="/wishlist-validation" method="post">
     <p><span th:text="${session.username}"></span>'s Wish-list</p>
-    <label for="wish-item">Wish item: </label>
-    <input type="text" id="wish-item" name="wish-item">
-    <label for="comment">Comment: </label>
-    <input type="textarea" id="comment" name="comment">
-    <label for="wish-link">Wish link: </label>
-    <input type="text" id="wish-link" name="wish-link">
-    <button>Add Wish</button>
-    <ul>
-        <li>HER SKAL ØNSKERNE TILFØJES NÅR MAN TRYKKER PÅ ADD WISH SOMEHOW MED THYMELEAF</li>
+
+    <label for="title">Wish item: </label>
+
+    <input type="text" id="title" name="title">
+
+    <label for="cmnt">Comment: </label>
+    <input type="textarea" id="cmnt" name="cmnt">
+
+    <label for="link">Wish link: </label>
+    <input type="text" id="link" name="link">
+
+    <button type="submit">Add Wish</button>
+
+    <ul th:each="wishes: ${session.wishlist}">
+            <li th:text="${wishes.title}"></li>
+            <li th:text="${wishes.cmnt}"></li>
+            <li th:text="${wishes.link}"></li>
     </ul>
-    <input type="submit" value="Share Wishlist">
+
+    <button >Share wishlist</button>
 </form>
 
 </body>
