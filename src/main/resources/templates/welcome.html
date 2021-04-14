@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>WishLink - Welcome!</title>
+<head th:replace="fragments/head.html(pageTitle='WishLink - Welcome!')">
+
 </head>
 <body>
+<header th:replace="fragments/header.html">
+
+</header>
 
     <p>Welcome <span th:text="${session.username}"></span>!</p>
 </body>
+
+<footer th:replace="fragments/footer.html"></footer>
 </html>
