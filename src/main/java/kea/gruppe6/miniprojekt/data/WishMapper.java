@@ -1,7 +1,9 @@
 package kea.gruppe6.miniprojekt.data;
 
 
+import kea.gruppe6.miniprojekt.domain.User;
 import kea.gruppe6.miniprojekt.domain.Wish;
+import kea.gruppe6.miniprojekt.domain.WishList;
 
 import java.sql.*;
 
@@ -30,8 +32,35 @@ public class WishMapper {
         }
     }
 
-    public void readWish(){
+    public WishList readWish(String email){
+        Wish wish;
+        WishList wishList = new WishList();
 
+        try {
+            Connection conn = DBManager.getConnection();
+            String SQL = "SELECT * FROM wishlist WHERE email=?";
+
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String link = rs.getString("link");
+                String cmnt = rs.getString("cmnt");
+                boolean reserved = rs.getBoolean("reserved");
+
+                wish =  new Wish(title,link,cmnt,reserved,email);
+                wishList.addWish(wish);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
     }
 
     public void updateWish(){
