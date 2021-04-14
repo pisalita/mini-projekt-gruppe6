@@ -6,10 +6,11 @@
 <header th:replace="fragments/header.html">
 
 </header>
-<form action="/create-user" method="POST">
-<input type="text" name="Name" id="Name" placeholder="Enter your full name">
+<form action="/create-user-validation" method="POST">
+<input type="text" name="username" id="username" placeholder="Enter your full name">
 <input type="email" name="email" id="email" placeholder="Enter your E-mail address">
 <input type="password" name="password" id="password" placeholder="Enter your password">
+    <input type="password" name="password2" id="password2" placeholder="Confirm password">
 
 <button type="submit">Click here to create user</button>
 </form>

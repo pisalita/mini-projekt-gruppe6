@@ -16,6 +16,11 @@ public class FrontController {
     LoginControl loginControl = new LoginControl(new UserImpl());
     User user;
 
+    @GetMapping(value = "/")
+    public String index(){
+        return "index.html";
+    }
+
     @GetMapping(value ="/login")
     public String login(){
         return "login.html";
@@ -34,6 +39,28 @@ public class FrontController {
         System.out.println(user.getUsername() + user.getEmail() + user.getPwd());
 
         return "redirect:/welcome";
+    }
+
+    @GetMapping(value ="/create-user")
+    public String createUser(){
+        return "create-user.html";
+    }
+
+    @PostMapping(value = "/create-user-validation")
+    public String createUserValidation(WebRequest request) throws LoginWishLinkException{
+        String email = request.getParameter("email");
+        String username = request.getParameter("username");
+        String pwd = request.getParameter("password");
+        String pwd2 = request.getParameter("password2");
+
+
+
+        if(pwd.equals(pwd2)){
+            user = loginControl.createUser(email,username,pwd);
+            return "redirect:/";
+        }else{
+            throw new LoginWishLinkException("Password dont match");
+        }
     }
 
     @GetMapping(value ="/welcome")

@@ -1,7 +1,6 @@
 package kea.gruppe6.miniprojekt.domain;
 
-
-public class LoginControl {
+public class LoginControl{
 
     private IUser user = null;
 
