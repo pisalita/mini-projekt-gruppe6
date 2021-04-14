@@ -1,9 +1,8 @@
 package kea.gruppe6.miniprojekt.controllers;
 
 import kea.gruppe6.miniprojekt.data.UserImpl;
-import kea.gruppe6.miniprojekt.domain.LoginControl;
-import kea.gruppe6.miniprojekt.domain.LoginWishLinkException;
-import kea.gruppe6.miniprojekt.domain.User;
+import kea.gruppe6.miniprojekt.data.WishMapper;
+import kea.gruppe6.miniprojekt.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,11 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class FrontController {
     LoginControl loginControl = new LoginControl(new UserImpl());
+    WishMapper wishMapper = new WishMapper();
+
+    WishList wishList = new WishList();
     User user;
+    Wish wish;
 
     @GetMapping(value = "/")
     public String index(){
@@ -35,8 +38,6 @@ public class FrontController {
 
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("username", user.getUsername(), WebRequest.SCOPE_SESSION);
-
-        System.out.println(user.getUsername() + user.getEmail() + user.getPwd());
 
         return "redirect:/welcome";
     }
@@ -73,7 +74,32 @@ public class FrontController {
     @GetMapping(value ="/createWishList")
     public String createWishList(WebRequest request){
 
+
+        request.getAttribute("wishlist", WebRequest.SCOPE_SESSION);
         request.getAttribute("username", WebRequest.SCOPE_SESSION);
         return "wishlist.html";
     }
+
+    @PostMapping(value = "/wishlist-validation")
+    public String wishlistValidation(WebRequest request){
+        String title = request.getParameter("title");
+        String cmnt = request.getParameter("cmnt");
+        String link = request.getParameter("link");
+        String email = user.getEmail();
+
+        System.out.println(email);
+        if(email == null){
+            email = "";
+        }
+
+        wish = new Wish(title,link,cmnt,false,email);
+
+
+        wishList.addWish(wish);
+
+        request.setAttribute("wishlist", wishList.getList(), WebRequest.SCOPE_SESSION);
+        wishMapper.createWish(wish);
+        return "redirect:/createWishList";
+    }
+
 }
