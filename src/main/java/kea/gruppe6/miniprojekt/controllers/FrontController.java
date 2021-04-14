@@ -95,7 +95,6 @@ public class FrontController {
 
         wish = new Wish(title,link,cmnt,false,email);
 
-
         wishList.addWish(wish);
 
         request.setAttribute("wishlist", wishList.getList(), WebRequest.SCOPE_SESSION);
