@@ -10,7 +10,10 @@
     <li th:text="${wishes.title}"></li>
     <li th:text="${wishes.cmnt}"></li>
     <li th:text="${wishes.link}"></li>
-    <li th:text="${wishes.reserved}"></li>
+    <td>
+        <button th:if="${wishes.reserved == false} ">Not reserved</button>
+        <li th:if="${wishes.reserved == true} ">Reserved</li>
+    </td>
 </ul>
 
 </body>
