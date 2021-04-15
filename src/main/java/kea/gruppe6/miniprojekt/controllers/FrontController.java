@@ -55,8 +55,6 @@ public class FrontController {
         String pwd = request.getParameter("password");
         String pwd2 = request.getParameter("password2");
 
-
-
         if(pwd.equals(pwd2)){
             user = loginControl.createUser(email,username,pwd);
             return "redirect:/";
@@ -107,6 +105,8 @@ public class FrontController {
 
         WishList readList = wishMapper.readWish(email);
         request.setAttribute("wishlist", readList.getList(), WebRequest.SCOPE_SESSION);
+
+        //boolean reserved = request.getParameter("reserved");
 
         return "view-wishlist.html";
     }
