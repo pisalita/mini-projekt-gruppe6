@@ -106,7 +106,7 @@ public class FrontController {
         WishList readList = wishMapper.readWish(email);
         request.setAttribute("wishlist", readList.getList(), WebRequest.SCOPE_SESSION);
 
-        boolean reserved = request.getParameter("reserved");
+        //boolean reserved = request.getParameter("reserved");
 
         return "view-wishlist.html";
     }
