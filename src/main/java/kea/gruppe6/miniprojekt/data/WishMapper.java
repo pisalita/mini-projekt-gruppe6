@@ -53,6 +53,7 @@ public class WishMapper {
                 boolean reserved = rs.getBoolean("reserved");
 
                 wish =  new Wish(title,link,cmnt,reserved,email);
+                wish.setId(id);
                 wishList.addWish(wish);
             }
 
@@ -63,15 +64,25 @@ public class WishMapper {
         return wishList;
     }
 
-    public void updateWish(){
-
-    }
 
     public void deleteWish(){
 
     }
 
-    public void reserveWish(){
+    public void reserveWish(int id){
+
+        try {
+            Connection conn = DBManager.getConnection();
+            String SQL = "UPDATE wishlist  SET reserved =1 WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
     }
 

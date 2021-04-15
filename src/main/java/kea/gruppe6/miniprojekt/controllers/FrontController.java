@@ -4,11 +4,14 @@ import kea.gruppe6.miniprojekt.data.UserImpl;
 import kea.gruppe6.miniprojekt.data.WishMapper;
 import kea.gruppe6.miniprojekt.domain.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -17,16 +20,20 @@ public class FrontController {
     WishMapper wishMapper = new WishMapper();
 
     WishList wishList = new WishList();
+    WishList readList;
     User user;
     Wish wish;
 
+
     @GetMapping(value = "/")
-    public String index(){
+    public String index(Model model){
+        passLoginStatusToModel(model, user);
         return "index.html";
     }
 
     @GetMapping(value ="/login")
-    public String login(){
+    public String login(Model model){
+        passLoginStatusToModel(model, user);
         return "login.html";
     }
 
@@ -36,6 +43,7 @@ public class FrontController {
         String pwd =  request.getParameter("pwd");
 
         user =  loginControl.login(email,pwd);
+        user.setLoggedIn(true);
 
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("username", user.getUsername(), WebRequest.SCOPE_SESSION);
@@ -44,7 +52,8 @@ public class FrontController {
     }
 
     @GetMapping(value ="/create-user")
-    public String createUser(){
+    public String createUser(Model model){
+        passLoginStatusToModel(model, user);
         return "create-user.html";
     }
 
@@ -57,6 +66,7 @@ public class FrontController {
 
         if(pwd.equals(pwd2)){
             user = loginControl.createUser(email,username,pwd);
+            user.setLoggedIn(true);
             return "redirect:/";
         }else{
             throw new LoginWishLinkException("Password dont match");
@@ -64,15 +74,15 @@ public class FrontController {
     }
 
     @GetMapping(value ="/welcome")
-    public String welcome(WebRequest request){
-
+    public String welcome(WebRequest request, Model model){
+        passLoginStatusToModel(model, user);
         request.getAttribute("username", WebRequest.SCOPE_SESSION);
         return "welcome.html";
     }
 
     @GetMapping(value ="/createWishList")
-    public String createWishList(WebRequest request){
-
+    public String createWishList(WebRequest request, Model model){
+        passLoginStatusToModel(model, user);
 
         request.getAttribute("wishlist", WebRequest.SCOPE_SESSION);
         request.getAttribute("username", WebRequest.SCOPE_SESSION);
@@ -101,14 +111,39 @@ public class FrontController {
     }
 
     @GetMapping("/view-wishlist")
-    public String viewWishlist(@RequestParam("email") String email, WebRequest request){
+    public String viewWishlist(@RequestParam("email") String email, Model model){
+        passLoginStatusToModel(model, user);
+        readList = wishMapper.readWish(email);
 
-        WishList readList = wishMapper.readWish(email);
-        request.setAttribute("wishlist", readList.getList(), WebRequest.SCOPE_SESSION);
-
-        //boolean reserved = request.getParameter("reserved");
+        model.addAttribute("wishlist",readList.getList());
+        model.addAttribute("email", readList.getList().get(0).getEmail());
 
         return "view-wishlist.html";
     }
 
+    @PostMapping(value ="/reserve-wish-validation")
+    public String reserveWishValidation(@RequestParam("id") int id){
+        System.out.println(id);
+        System.out.println(readList.getList().get(0).getEmail());
+
+        wishMapper.reserveWish(id);
+
+        return "redirect:/view-wishlist?email=" + readList.getList().get(0).getEmail();
+    }
+
+    @PostMapping(value = "/logout-validation")
+    public String logoutValidation(){
+        user.setLoggedIn(false);
+        return "redirect:/";
+    }
+
+
+    public void passLoginStatusToModel(Model model, User user){
+        model.addAttribute("isLoggedIn", false);
+        if(!(user == null)){
+            user.setLoggedIn(true);
+            model.addAttribute("isLoggedIn", user.isLoggedIn());
+        }
+
+    }
 }
