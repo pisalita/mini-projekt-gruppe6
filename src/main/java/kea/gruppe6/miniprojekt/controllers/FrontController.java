@@ -131,19 +131,19 @@ public class FrontController {
         return "redirect:/view-wishlist?email=" + readList.getList().get(0).getEmail();
     }
 
-    @PostMapping(value = "/logout-validation")
+    @GetMapping(value = "/logout-validation")
     public String logoutValidation(){
-        user.setLoggedIn(false);
+        if(user.isLoggedIn() == true){
+            user.setLoggedIn(false);
+            user = null;
+        }
         return "redirect:/";
     }
 
-
     public void passLoginStatusToModel(Model model, User user){
         model.addAttribute("isLoggedIn", false);
-        if(!(user == null)){
-            user.setLoggedIn(true);
+        if(user != null){
             model.addAttribute("isLoggedIn", user.isLoggedIn());
         }
-
     }
 }
