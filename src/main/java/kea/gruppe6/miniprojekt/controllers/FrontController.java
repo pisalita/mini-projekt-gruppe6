@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpServletRequest;
-
-
 @Controller
 public class FrontController {
     LoginControl loginControl = new LoginControl(new UserImpl());
@@ -84,9 +81,21 @@ public class FrontController {
     public String createWishList(WebRequest request, Model model){
         passLoginStatusToModel(model, user);
 
-        request.getAttribute("wishlist", WebRequest.SCOPE_SESSION);
-        request.getAttribute("username", WebRequest.SCOPE_SESSION);
+        model.addAttribute("shared", wishList.isShared());
+        model.addAttribute("email", user.getEmail());
+
+        wishList = wishMapper.readWish(user.getEmail());
+
+        model.addAttribute("wishlist",wishList.getList());
+        model.addAttribute("username",user.getUsername());
+
         return "wishlist.html";
+    }
+
+    @GetMapping(value = "/shared-validation")
+    public String sharedValidation(){
+        wishList.setShared(true);
+        return "redirect:/createWishList";
     }
 
     @PostMapping(value = "/wishlist-validation")
@@ -139,6 +148,7 @@ public class FrontController {
         }
         return "redirect:/";
     }
+
 
     public void passLoginStatusToModel(Model model, User user){
         model.addAttribute("isLoggedIn", false);
