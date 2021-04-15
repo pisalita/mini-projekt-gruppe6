@@ -8,11 +8,7 @@
             <ul>
 
                 <li th:if="${isLoggedIn == false}"><a th:href="@{/login}" th:classappend="${currentPage=='login' ? 'bold':''}">Login</a></li>
-
-                <form th:action="@{/logout-validation}" method="post">
-                    <li th:if="${isLoggedIn == true}"><a href="/"  type="submit" th:classappend="${currentPage=='login' ? 'bold':''}">Log out</a></li>
-                </form>
-
+                <li th:if="${isLoggedIn == true}"><a th:href="@{/logout-validation}" th:classappend="${currentPage=='login' ? 'bold':''}">Log out</a></li>
                 <li th:if="${isLoggedIn == false}"><a th:href="@{/create-user}" th:classappend="${currentPage=='create-user' ? 'bold':''}">Create User</a></li>
                 <li><a th:href="@{/createWishList}" th:classappend="${currentPage=='wishlist' ? 'bold':''}">Wishlist</a></li>
                 <li><a th:href="@{/}" th:classappend="${currentPage=='home' ? 'bold':''}">Home</a></li>
