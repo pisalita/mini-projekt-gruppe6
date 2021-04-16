@@ -45,7 +45,7 @@ public class FrontController {
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("username", user.getUsername(), WebRequest.SCOPE_SESSION);
 
-        return "redirect:/welcome";
+        return "redirect:/";
     }
 
     @GetMapping(value ="/create-user")
@@ -68,13 +68,6 @@ public class FrontController {
         }else{
             throw new LoginWishLinkException("Password dont match");
         }
-    }
-
-    @GetMapping(value ="/welcome")
-    public String welcome(WebRequest request, Model model){
-        passLoginStatusToModel(model, user);
-        request.getAttribute("username", WebRequest.SCOPE_SESSION);
-        return "welcome.html";
     }
 
     @GetMapping(value ="/createWishList")
