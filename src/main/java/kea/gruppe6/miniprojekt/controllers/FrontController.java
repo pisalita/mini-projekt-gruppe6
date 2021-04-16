@@ -39,11 +39,15 @@ public class FrontController {
         String email = request.getParameter("email");
         String pwd =  request.getParameter("pwd");
 
-        user =  loginControl.login(email,pwd);
+        if(loginControl.login(email,pwd) == null){
+            return "redirect:/login";
+        }
+        user = loginControl.login(email, pwd);
         user.setLoggedIn(true);
 
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("username", user.getUsername(), WebRequest.SCOPE_SESSION);
+
 
         return "redirect:/";
     }

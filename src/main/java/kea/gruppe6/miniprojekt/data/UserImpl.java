@@ -17,4 +17,5 @@ public class UserImpl implements IUser {
         userMapper.createUser(user);
         return user;
     }
+
 }

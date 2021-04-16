@@ -4,25 +4,33 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1 th:text="${email}"></h1>
 
-<ul th:each="wishes: ${wishlist}">
+<div class="center-wrapper-view">
+        <ul th:each="wishes: ${wishlist}">
+            <div class="grid-container-view">
+                <div class="grid-item">
+                    <li th:text="${wishes.title}"></li>
+                </div>
 
-    <li th:text="${wishes.title}"></li>
-    <li th:text="${wishes.cmnt}"></li>
-    <li th:text="${wishes.link}"></li>
+                <div class="grid-item">
+                    <li th:text="${wishes.cmnt}"></li>
+                </div>
 
-    <li th:text="${wishes.id}"></li>
+                <div class="grid-item">
+                    <li th:text="${wishes.link}"></li>
+                </div>
 
+                <div class="grid-item">
+                    <form method="post" th:action="@{/reserve-wish-validation(id=${wishes.id})}">
+                        <button th:if="${wishes.reserved == false}" type="submit">Reserve</button>
+                        <li th:if="${wishes.reserved == true}">Reserved</li>
+                    </form>
+                </div>
 
-    <form method="post" th:action="@{/reserve-wish-validation(id=${wishes.id})}">
-        <button th:if="${wishes.reserved == false}" type="submit">Not reserved</button>
-        <li th:if="${wishes.reserved == true}">Reserved</li>
-    </form>
+            </div>
 
-</ul>
-
-
+        </ul>
+</div>
 </body>
 <footer th:replace="fragments/footer.html"></footer>
 </html>

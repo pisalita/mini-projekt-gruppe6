@@ -37,14 +37,16 @@ public class UserMapper {
             ps.setString(2, pwd);
 
             ResultSet rs = ps.executeQuery();
+
             if(rs.next()){
                 String username = rs.getString("username");
                 int id = rs.getInt("id");
+
                 User user = new User(email,pwd,username);
                 user.setId(id);
                 return user;
             } else {
-                throw new LoginWishLinkException("Could not login, try again");
+                return null;
             }
 
         }catch(SQLException e){
