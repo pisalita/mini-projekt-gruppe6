@@ -10,7 +10,9 @@ import java.sql.*;
 public class WishMapper {
 
     public void createWish(Wish wish){
+
         try {
+
             Connection conn = DBManager.getConnection();
             String SQL = "INSERT INTO wishlist (title, link, cmnt, reserved, email) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -35,7 +37,6 @@ public class WishMapper {
     public WishList readWish(String email){
         Wish wish;
         WishList wishList = new WishList();
-
         try {
             Connection conn = DBManager.getConnection();
             String SQL = "SELECT * FROM wishlist WHERE email=?";
@@ -70,7 +71,6 @@ public class WishMapper {
     }
 
     public void reserveWish(int id){
-
         try {
             Connection conn = DBManager.getConnection();
             String SQL = "UPDATE wishlist  SET reserved =1 WHERE id=?";

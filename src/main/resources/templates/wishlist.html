@@ -50,7 +50,7 @@
     <div class="share-btn">
         <a th:href="@{/shared-validation}">Share wishlist</a>
         <div th:if="${shared == true}">
-            <a class="display-inline" th:href="@{http://localhost:8080/view-wishlist(email=${email})}">http://localhost:8080/view-wishlist?email=
+            <a class="display-inline" th:href="@{http://52.58.78.245:8080/wishlink/view-wishlist(email=${email})}">http://localhost:8080/view-wishlist?email=
             <p class="display-inline" th:text="${email}"></p></a>
         </div>
     </div>
