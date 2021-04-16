@@ -3,17 +3,27 @@
 <head th:replace="fragments/head.html(pageTitle='WishLink - Create User')">
 </head>
 <body>
-<header th:replace="fragments/header.html">
+<header th:replace="fragments/header.html"></header>
 
-</header>
-<form action="/create-user-validation" method="POST">
-<input type="text" name="username" id="username" placeholder="Enter your full name">
-<input type="email" name="email" id="email" placeholder="Enter your E-mail address">
-<input type="password" name="password" id="password" placeholder="Enter your password">
-    <input type="password" name="password2" id="password2" placeholder="Confirm password">
+<main>
+    <div class="center-wrapper">
+        <div>
+            <h1>Enter your user credentials to create user</h1>
+            <form action="/create-user-validation" method="POST">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter your full name">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your E-mail address">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+                <label for="password2">Confirm password</label>
+                <input type="password" name="password2" id="password2" placeholder="Confirm password">
+                <button type="submit">Create user</button>
+            </form>
+        </div>
+    </div>
+</main>
 
-<button type="submit">Click here to create user</button>
-</form>
 </body>
 
 <footer th:replace="fragments/footer.html"></footer>

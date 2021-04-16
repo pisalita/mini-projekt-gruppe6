@@ -10,6 +10,7 @@ body{
     background-image: url("/images/background.png");
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100vh;
 }
 
 header{
@@ -17,7 +18,6 @@ header{
     justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
-
 }
 
 .logo{
@@ -51,6 +51,99 @@ a{
     color: inherit;
     text-decoration: none;
 }
+
+footer{
+    background-color: rgba(197, 197, 196, 0.2);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+.center-wrapper h1{
+    padding-bottom: 10px;
+}
+
+.center-wrapper p{
+    font-size: 1.1rem;
+}
+
+.center-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+
+.center-wrapper div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label{
+    padding: 10px;
+}
+
+form input{
+    padding: 5px;
+}
+
+form button{
+    margin-top: 10px;
+}
+
+button{
+    border-radius: 2px;
+    border: solid black 1px;
+    padding: 0.5px 15px;
+    transition: all 0.3s ease 0s;
+
+}
+
+button:hover{
+    opacity: 50%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    padding: 10px;
+}
+
+.grid-item {
+    border-top: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+#add-wish-btn{
+    padding: 8px 8px;
+    margin-top: 30px;
+}
+
+.display-inline{
+    display: inline;
+}
+
+.share-btn{
+    border-radius: 2px;
+    border: solid black 1px;
+    padding: 0.5px 15px;
+    transition: all 0.3s ease 0s;
+    margin-bottom: 150px;
+}
+
 
 
 

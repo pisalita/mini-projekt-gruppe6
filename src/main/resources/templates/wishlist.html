@@ -3,38 +3,58 @@
 <head th:replace="fragments/head.html(pageTitle='WishLink - Wishlist')">
 </head>
 <body>
-    <header th:replace="fragments/header.html"></header>
+<header th:replace="fragments/header.html"></header>
 
 <form action="/wishlist-validation" method="post">
-    <p><span th:text="${username}"></span>'s Wish-list</p>
+    <p><span th:text="${username}"></span> Wish-list</p>
 
-    <label for="title">Wish item: </label>
+    <div class="grid-container">
+        <div class="grid-item">
+            <label for="title">Wish item: </label>
+            <input type="text" id="title" name="title">
 
-    <input type="text" id="title" name="title">
+        </div>
 
-    <label for="cmnt">Comment: </label>
-    <input type="textarea" id="cmnt" name="cmnt">
+        <div class="grid-item">
+            <label for="cmnt">Comment: </label>
+            <input type="textarea" id="cmnt" name="cmnt">
+            <button id="add-wish-btn" type="submit">Add Wish</button>
+        </div>
 
-    <label for="link">Wish link: </label>
-    <input type="text" id="link" name="link">
+        <div class="grid-item">
+            <label for="link">Wish link: </label>
+            <input type="text" id="link" name="link">
+        </div>
 
-    <button type="submit">Add Wish</button>
-
+    </div>
     <ul th:each="wishes: ${wishlist}">
-            <li th:text="${wishes.title}"></li>
-            <li th:text="${wishes.cmnt}"></li>
-            <li th:text="${wishes.link}"></li>
+        <div class="grid-container">
+            <div class="grid-item">
+                <li th:text="${wishes.title}"></li>
+            </div>
+
+            <div class="grid-item">
+                <li th:text="${wishes.cmnt}"></li>
+            </div>
+
+            <div class="grid-item">
+                <li th:text="${wishes.link}"></li>
+            </div>
+
+        </div>
+
     </ul>
 </form>
 
-
-    <a th:href="@{/shared-validation}">Share wishlist</a>
-
-    <div th:if="${shared == true}">
-        <a style="margin: 0; display: inline;" th:href="@{http://localhost:8080/view-wishlist(email=${email})}">http://localhost:8080/view-wishlist?email=<p style="margin: 0; display: inline;" th:text="${email}"></p></a>
+<div class="center-wrapper">
+    <div class="share-btn">
+        <a th:href="@{/shared-validation}">Share wishlist</a>
+        <div th:if="${shared == true}">
+            <a class="display-inline" th:href="@{http://localhost:8080/view-wishlist(email=${email})}">http://localhost:8080/view-wishlist?email=
+            <p class="display-inline" th:text="${email}"></p></a>
+        </div>
     </div>
-
-
+</div>
 
 </body>
 

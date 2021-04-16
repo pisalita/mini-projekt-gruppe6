@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="fragments/head.html(pageTitle='WishLink - Wishlist')">
 </head>
 <body>
+<header th:replace="fragments/header.html"></header>
 <h1 th:text="${email}"></h1>
 
 <ul th:each="wishes: ${wishlist}">
@@ -25,4 +24,5 @@
 
 
 </body>
+<footer th:replace="fragments/footer.html"></footer>
 </html>

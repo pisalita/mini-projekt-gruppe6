@@ -71,8 +71,12 @@ public class FrontController {
     }
 
     @GetMapping(value ="/createWishList")
-    public String createWishList(WebRequest request, Model model){
+    public String createWishList(Model model){
         passLoginStatusToModel(model, user);
+
+        if(user == null){
+            return "login.html";
+        }
 
         model.addAttribute("shared", wishList.isShared());
         model.addAttribute("email", user.getEmail());
