@@ -3,36 +3,60 @@
     text-decoration: none;
     padding: 0px;
     margin: 0;
+    font-family: sans-serif;
 }
+
 body{
-    background-color: rosybrown;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+
+}
+
+.logo{
+    margin-right: auto;
+
 }
 
 #logo{
-    height: 4rem;
+    max-height: 4rem;
 }
 
-ul {
-    list-style-type: none;
-    overflow: hidden;
-}
-li {float: right;
+.nav-links{
+    list-style: none;
 }
 
-li a{
-    padding: 8px;
-    background-color: wheat;
+.nav-links li{
+    display: inline-block;
+    padding: 0px 50px;
 }
 
-li a:hover{
-    background-color: black;
+.nav-links li a{
+    transition: all 0.3s ease 0s;
+
 }
 
-.link-button {
-    background: none;
-    border: none;
-    color: #0066ff;
-    text-decoration: underline;
-    cursor: pointer;
+.nav-links li a:hover{
+    opacity: 50%;
 }
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
 
