@@ -4,9 +4,19 @@ import java.util.ArrayList;
 
 
 public class WishList {
+
     private ArrayList<Wish> list = new ArrayList<>();
+    private boolean isShared = false;
 
     public WishList(){
+    }
+
+    public boolean isShared() {
+        return isShared;
+    }
+
+    public void setShared(boolean shared) {
+        isShared = shared;
     }
 
     public void addWish(Wish wish){

@@ -5,9 +5,8 @@
 <body>
     <header th:replace="fragments/header.html"></header>
 
-
 <form action="/wishlist-validation" method="post">
-    <p><span th:text="${session.username}"></span>'s Wish-list</p>
+    <p><span th:text="${username}"></span>'s Wish-list</p>
 
     <label for="title">Wish item: </label>
 
@@ -21,14 +20,21 @@
 
     <button type="submit">Add Wish</button>
 
-    <ul th:each="wishes: ${session.wishlist}">
+    <ul th:each="wishes: ${wishlist}">
             <li th:text="${wishes.title}"></li>
             <li th:text="${wishes.cmnt}"></li>
             <li th:text="${wishes.link}"></li>
     </ul>
-
-    <button >Share wishlist</button>
 </form>
+
+
+    <a th:href="@{/shared-validation}">Share wishlist</a>
+
+    <div th:if="${shared == true}">
+        <a style="margin: 0; display: inline;" th:href="@{http://localhost:8080/view-wishlist(email=${email})}">http://localhost:8080/view-wishlist?email=<p style="margin: 0; display: inline;" th:text="${email}"></p></a>
+    </div>
+
+
 
 </body>
 
