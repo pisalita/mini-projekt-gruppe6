@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <header>
+    <a th:href="@{/}" class="logo"><img id="logo" th:src="@{/images/logo.svg}"/></a>
     <nav>
-        <a th:href="@{/}"><img class="logo" id="logo" th:src="@{/images/icon.png}"/></a>
-        <div class="nav-links">
-            <ul>
-
-                <li th:if="${isLoggedIn == false}"><a th:href="@{/login}" th:classappend="${currentPage=='login' ? 'bold':''}">Login</a></li>
-                <li th:if="${isLoggedIn == true}"><a th:href="@{/logout-validation}" th:classappend="${currentPage=='login' ? 'bold':''}">Log out</a></li>
-                <li th:if="${isLoggedIn == false}"><a th:href="@{/create-user}" th:classappend="${currentPage=='create-user' ? 'bold':''}">Create User</a></li>
-                <li><a th:href="@{/createWishList}" th:classappend="${currentPage=='wishlist' ? 'bold':''}">Wishlist</a></li>
-                <li><a th:href="@{/}" th:classappend="${currentPage=='home' ? 'bold':''}">Home</a></li>
-
-            </ul>
-        </div>
+        <ul class="nav-links">
+            <li><a th:href="@{/}" th:classappend="${currentPage=='home' ? 'bold':''}">Home</a></li>
+            <li><a th:href="@{/createWishList}" th:classappend="${currentPage=='wishlist' ? 'bold':''}">Wishlist</a></li>
+            <li th:if="${isLoggedIn == false}"><a th:href="@{/create-user}" th:classappend="${currentPage=='create-user' ? 'bold':''}">Create User</a></li>
+            <li th:if="${isLoggedIn == false}"><a th:href="@{/login}" th:classappend="${currentPage=='login' ? 'bold':''}">Login</a></li>
+            <li th:if="${isLoggedIn == true}"><a th:href="@{/logout-validation}" th:classappend="${currentPage=='login' ? 'bold':''}">Log out</a></li>
+        </ul>
     </nav>
 
 </header>
