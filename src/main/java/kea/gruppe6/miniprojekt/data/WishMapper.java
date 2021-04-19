@@ -9,6 +9,11 @@ import java.sql.*;
 
 public class WishMapper {
 
+    /**
+     * Creates wish in mySQL database
+     * @param wish object consisting of title, link, comment, reserved status and email
+     */
+
     public void createWish(Wish wish){
 
         try {
@@ -33,6 +38,12 @@ public class WishMapper {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Finds wishlist in mySQL database
+     * @param email the email provided by the user in url
+     * @return returns wishlist if found
+     */
 
     public WishList readWish(String email){
         Wish wish;
@@ -70,6 +81,11 @@ public class WishMapper {
 
     }
 
+    /**
+     * Reserves a wish in the mySQL database
+     * @param id the id of the wish getting reserved
+     */
+
     public void reserveWish(int id){
         try {
             Connection conn = DBManager.getConnection();
@@ -82,10 +98,5 @@ public class WishMapper {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
     }
-
-
-
 }

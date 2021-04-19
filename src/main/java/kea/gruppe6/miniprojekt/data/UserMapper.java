@@ -6,6 +6,12 @@ import java.sql.*;
 
 public class UserMapper {
 
+    /**
+     * Creates user in mySQL database
+     * @param user object object consisting of email, password and username
+     * @throws LoginWishLinkException if exception found
+     */
+
     public void createUser(User user) throws LoginWishLinkException{
         try {
             Connection conn = DBManager.getConnection();
@@ -26,6 +32,14 @@ public class UserMapper {
             throw new LoginWishLinkException(e.getMessage());
         }
     }
+
+    /**
+     * Finds user in mySQL database
+     * @param email the email provided by the user
+     * @param pwd the password provided by the user
+     * @return returns user if user is found in database, else null
+     * @throws LoginWishLinkException
+     */
 
     public User login(String email, String pwd) throws LoginWishLinkException{
         try {

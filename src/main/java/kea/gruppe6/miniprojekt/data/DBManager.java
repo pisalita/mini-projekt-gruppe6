@@ -15,6 +15,11 @@ public class DBManager {
     private static String url;
     private static Connection connection = null;
 
+    /**
+     * Returns a connection
+     * @return returns the connection to the mySQL database
+     */
+
     public static Connection getConnection(){
 
         try {
