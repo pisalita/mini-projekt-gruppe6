@@ -104,7 +104,6 @@ public class FrontController {
         String link = request.getParameter("link");
         String email = user.getEmail();
 
-        System.out.println(email);
         if(email == null){
             email = "";
         }
