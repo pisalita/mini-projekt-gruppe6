@@ -26,6 +26,21 @@ public class Wish {
         this.email = email;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+
+    public String getCmnt() {
+        return cmnt;
+    }
+
+
+    public boolean isReserved() {
+        return reserved;
+    }
+
+
     /**
      * Gets the id of a wish
      * @return returns the wish id
