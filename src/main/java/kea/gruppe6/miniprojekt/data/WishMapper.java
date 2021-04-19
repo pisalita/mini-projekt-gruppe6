@@ -77,10 +77,6 @@ public class WishMapper {
     }
 
 
-    public void deleteWish(){
-
-    }
-
     /**
      * Reserves a wish in the mySQL database
      * @param id the id of the wish getting reserved
