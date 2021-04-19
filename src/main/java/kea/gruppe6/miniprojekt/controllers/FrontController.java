@@ -5,10 +5,8 @@ import kea.gruppe6.miniprojekt.data.WishMapper;
 import kea.gruppe6.miniprojekt.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
@@ -34,7 +32,7 @@ public class FrontController {
         return "login.html";
     }
 
-    @PostMapping(value ="/login-validation")
+    @RequestMapping(value ="/login-validation", method = RequestMethod.POST)
     public String loginUser(WebRequest request) throws LoginWishLinkException{
         String email = request.getParameter("email");
         String pwd =  request.getParameter("pwd");
