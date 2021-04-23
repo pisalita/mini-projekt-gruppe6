@@ -9,7 +9,7 @@
     <div class="center-wrapper">
         <div class="inner-wrapper">
             <h1>Enter your user credentials to create user</h1>
-            <form action="/create-user-validation" method="POST">
+            <form th:action="@{/create-user-validation}" method="POST">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="Enter your full name">
                 <label for="email">Email</label>

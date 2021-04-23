@@ -10,7 +10,7 @@
     <div class="center-wrapper">
         <div class="inner-wrapper">
             <h1>Enter your user credentials to log in</h1>
-            <form action="/login-validation" method="post">
+            <form th:action="@{/login-validation}" method="post">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="email">
 
