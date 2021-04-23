@@ -26,15 +26,28 @@ public class Wish {
         this.email = email;
     }
 
+    /**
+     * Gets the link of a wish
+     * @return returns the wish link
+     */
+
     public String getLink() {
         return link;
     }
 
+    /**
+     * Gets the comment of a wish
+     * @return returns the wish comment
+     */
 
     public String getCmnt() {
         return cmnt;
     }
 
+    /**
+     * Gets the boolean reserved
+     * @return true or false based on if the wish is reserved by others or not
+     */
 
     public boolean isReserved() {
         return reserved;
